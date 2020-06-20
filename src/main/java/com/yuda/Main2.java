@@ -17,10 +17,8 @@ public class Main2 {
     public static void main(String[] args) throws IOException, CannotCompileException, NotFoundException {
         ClassPool pool = ClassPool.getDefault();
         CtClass cc = pool.get("HelloWorld");
-        CtMethod[] methods = cc.getMethods();
-        for (CtMethod method : methods) {
-            System.out.println(method.getName());
-        }
-        cc.writeFile();
+        CtMethod method = cc.getMethod("license", "()Z");
+        method.setBody("return false;");
+        cc.writeFile("./src/main/java/test2");
     }
 }
